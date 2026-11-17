@@ -1,0 +1,12 @@
+{
+  "name": "theiterators-social-cards",
+  "private": true,
+  "type": "module",
+  "description": "Renders the 1280x640 social preview cards for the pinned theiterators repositories.",
+  "scripts": {
+    "cards": "node generate.mjs"
+  },
+  "devDependencies": {
+    "playwright": "^1.56.0"
+  }
+}

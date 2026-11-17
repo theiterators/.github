@@ -1,0 +1,67 @@
+{
+  "note": "One social preview card per pinned repository. Code is copied from each repository's README or docs; lines may be left out, never rewritten. {{ }} marks the few tokens drawn in orange. No versions or dates, so the cards do not go stale.",
+  "cards": [
+    {
+      "repo": "baklava",
+      "line": "Your HTTP tests write the API docs and the typed clients.",
+      "code": [
+        "onRequest(pathParameters = 1L)",
+        "  .respondsWith[User](OK, description = \"User found\")",
+        "$ sbt test",
+        "# Output in target/baklava/{{openapi/openapi.yml}}"
+      ]
+    },
+    {
+      "repo": "kebs",
+      "line": "No hand-written codecs or mappings for your own types.",
+      "code": [
+        "case class UserId(value: String) extends AnyVal",
+        "case class Email(value: String) extends AnyVal",
+        "",
+        "object ThingProtocol extends {{KebsCirce}}"
+      ]
+    },
+    {
+      "repo": "sealed-monad",
+      "line": "Business logic with many outcomes, read top to bottom.",
+      "code": [
+        "(for {",
+        "  user <- findUser(email)",
+        "    .{{valueOr}}(LoginResponse.InvalidCredentials)",
+        "    .{{ensure}}(!_.archived, LoginResponse.Deleted)",
+        "} yield LoginResponse.LoggedIn(issueTokenFor(user))).run"
+      ]
+    },
+    {
+      "repo": "http4s-stir",
+      "line": "Keep the Pekko HTTP routing style when you move to http4s.",
+      "code": [
+        "{{pathPrefix}}(\"item\" / LongNumber) { id =>",
+        "  val maybeItem: IO[Option[Item]] = fetchItem(id)",
+        "  {{onSuccess}}(maybeItem) {",
+        "    case Some(item) => {{complete}}(item)",
+        "    case None       => {{complete}}(Status.NotFound)"
+      ]
+    },
+    {
+      "repo": "pekko-http-microservice",
+      "line": "A REST service in Pekko HTTP and Scala 3, with a tutorial.",
+      "code": [
+        "$ sbt",
+        "> {{~reStart}}",
+        "",
+        "$ curl http://localhost:9000/ip/8.8.8.8"
+      ]
+    },
+    {
+      "repo": "kebs-intellij",
+      "line": "IntelliJ IDEA support for the code kebs generates.",
+      "code": [
+        "{{@tagged}} trait SharedTags {",
+        "  trait EmailTag",
+        "  type Email = String @@ EmailTag",
+        "}"
+      ]
+    }
+  ]
+}
